@@ -1,35 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsPaypal } from "react-icons/bs";
 import kbz from "../../public/kbz.png";
+import axios from "axios";
 
 const FormSubmit = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phoneNumber: "",
-    email: "",
-    paymentMethod: "",
-    transition_id: "",
-    // termsAndConditions: false,
-  });
   const [qty, setQty] = useState(1);
+  const [extraPerson, setExtraPerson] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const [formData, setFormData] = useState({
+    accname: "",
+    phone: "",
+    email: "",
+    payment_type: "",
+    transactionid: "",
+    ticketid: "653113aa159bca69ffa36b04",
+    plus_person: null,
+    tick_quantity: null,
+    total_price: null,
+  });
+
+  // Calculate the total price whenever qty or extraPerson changes
+  useEffect(() => {
+    const pricePerTicket = 35000; // Change this to the actual price per ticket
+    const fee = 555; // Change this to the actual fee
+    const totalPrice = qty * pricePerTicket + extraPerson * fee;
+    setTotal(totalPrice);
+    setFormData({
+      ...formData,
+      tick_quantity: qty,
+      plus_person: extraPerson,
+      total_price: totalPrice,
+    });
+  }, [qty, extraPerson]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
-    setFormData({ ...formData, [name]: newValue });
+
+    if (name === "qty") {
+      // Handle quantity change
+      setQty(newValue);
+    } else if (name === "extraPerson") {
+      // Handle extraPerson change
+      setExtraPerson(newValue);
+    } else {
+      setFormData({ ...formData, [name]: newValue });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here, e.g., send the formData to an API
+    try {
+      const response = await axios.post("http://206.189.39.172/user", formData);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
     console.log(formData);
   };
 
   return (
-    <div className=" flex items-center justify-center bg-black ">
+    <div className="flex items-center justify-center bg-black">
       <div className="flex flex-col lg:w-[900px] gap-5">
         {/* top form side  */}
-        <div className=" bg-slate-50 p-5 rounded-md">
+        <div className="bg-slate-50 p-5 rounded-md">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {/* Personal info  */}
             <div className="flex flex-col gap-5">
@@ -45,8 +80,8 @@ const FormSubmit = () => {
                 type="text"
                 className="inputForm"
                 id="name"
-                name="name"
-                value={formData.name}
+                name="accname"
+                value={formData.accname}
                 onChange={handleChange}
                 required
               />
@@ -55,18 +90,18 @@ const FormSubmit = () => {
                 className="inputForm"
                 type="tel"
                 id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 required
               />
               <input
                 placeholder="Transition ID"
                 className="inputForm"
-                type="number"
-                id="transition_id"
-                name="transition_id"
-                value={formData.transition_id}
+                type="text"
+                id="transactionid"
+                name="transactionid"
+                value={formData.transactionid}
                 onChange={handleChange}
                 required
               />
@@ -81,45 +116,70 @@ const FormSubmit = () => {
                 required
               />
               {/* Quantity */}
-              <div className=" cursor-pointer flex justify-between border-white bg-gradient-to-r from-zinc-600 to-zinc-500 items-center p-5 rounded-md text-white">
+              <div className="cursor-pointer flex justify-between border-white bg-gradient-to-r from-zinc-600 to-zinc-500 items-center p-5 rounded-md text-white">
                 <p>Quantity : </p>
                 <div className="flex items-center gap-2 text-xl bg-white justify-center text-black rounded-md overflow-hidden">
+                  <p
+                    className="w-10 h-10 flex justify-center items-center"
+                    onClick={() => (qty > 1 ? setQty(qty - 1) : "")}
+                  >
+                    -
+                  </p>
+                  <p className="w-10 h-10 flex justify-center items-center">
+                    {qty}
+                  </p>
                   <p
                     className="w-10 h-10 flex justify-center items-center"
                     onClick={() => setQty(qty + 1)}
                   >
                     +
                   </p>
-                  <p className="w-10 h-10 flex justify-center items-center ">
-                    {qty}
+                </div>
+              </div>
+              {/* Extra person */}
+              <div className="cursor-pointer flex justify-between border-white bg-gradient-to-r from-zinc-600 to-zinc-500 items-center p-5 rounded-md text-white">
+                <p>Extra person : </p>
+                <div className="flex items-center gap-2 text-xl bg-white justify-center text-black rounded-md overflow-hidden">
+                  <p
+                    className="w-10 h-10 flex justify-center items-center"
+                    onClick={() =>
+                      extraPerson > 0 ? setExtraPerson(extraPerson - 1) : ""
+                    }
+                  >
+                    -
+                  </p>
+                  <p className="w-10 h-10 flex justify-center items-center">
+                    {extraPerson}
                   </p>
                   <p
                     className="w-10 h-10 flex justify-center items-center"
-                    onClick={() => setQty(qty - 1)}
+                    onClick={() => setExtraPerson(extraPerson + 1)}
                   >
-                    -
+                    +
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Payment Method */}
+            {/* Payment _type */}
             <div className="flex flex-col gap-5">
-              <label className="text-xl font-bold text-end" htmlFor="paymentMethod">
+              <label
+                className="text-xl font-bold text-end"
+                htmlFor="payment_type"
+              >
                 Payment Information
               </label>
               <div className="flex rounded-md gap-5">
                 <select
                   className="w-2/4 outline-none p-5"
-                  id="paymentMethod"
-                  name="paymentMethod"
-                  value={formData.paymentMethod}
+                  id="payment_type"
+                  name="payment_type"
+                  value={formData.payment_type}
                   onChange={handleChange}
                 >
                   <option value="ayapay">AYA Pay</option>
                   <option value="ayaaccount">AYA account</option>
                   <option value="kbzpay">KBZ Pay</option>
-
                 </select>
               </div>
             </div>
@@ -154,22 +214,24 @@ const FormSubmit = () => {
           </form>
         </div>
         {/* bottom side  */}
-        <div className="p-5  flex flex-col rounded-md ">
+        <div className="p-5 flex flex-col rounded-md ">
           <div className="text-black bg-gradient-to-r from-zinc-200 to-zinc-300 rounded-md">
             <div className="text-3xl py-5 flex justify-between px-5 border-b-2">
               <p>GA</p> <p>35000mmk</p>
             </div>
             {/* price  */}
-            <div className=" flex justify-between p-5">
+            <div className="flex justify-between p-5">
               <div className="text-xl flex flex-col gap-5 ">
                 <p>Price : </p>
                 <p>Quantity : </p>
                 <p>Fee : </p>
+                <p>Total : </p>
               </div>
               <div className="text-xl flex flex-col gap-5 ">
                 <p>35000mmk </p>
                 <p>{qty} ticket</p>
                 <p>555mmk </p>
+                <p>{total}mmk</p>
               </div>
             </div>
           </div>
