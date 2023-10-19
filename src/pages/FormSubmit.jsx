@@ -259,6 +259,6 @@ import { useSelector } from "react-redux";
       </div>
     </div>
   );
-};
+;
 
 export default FormSubmit;
