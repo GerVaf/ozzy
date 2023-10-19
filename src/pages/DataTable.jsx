@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const DataTable = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [ticket, setTicket] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,11 +17,23 @@ const DataTable = () => {
         console.log(error);
       }
     };
+    const fetchTicketData = async () => {
+      try {
+        const response = await axios.get("http://api.ozzy.today/tickets");
 
+        console.log(response);
+        setTicket(response?.data?.result?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTicketData();
     fetchData();
   }, [refresh]);
 
   console.log(data);
+  console.log(ticket);
 
   const handleSubmit = async (e, id) => {
     e.preventDefault();
@@ -44,7 +57,24 @@ const DataTable = () => {
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] flex items-center justify-center text-white">
+    <div className="w-[100vw] h-[100vh] flex flex-col items-center justify-center text-white">
+      <div className="flex gap-10 mb-10 text-2xl">
+        <div className=" flex flex-col  ">
+          <p className=" col-span-1">Name</p>
+          <p className=" col-span-1">Total</p>
+        </div>
+        <div className=" flex gap-10">
+          {ticket?.map((el) => {
+            return (
+              <div>
+                <p className=" col-span-1">{el?.ticket_name}</p>
+                <p className=" col-span-1">{el?.whole_total_ticket}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="flex flex-col">
         {/* header  */}
         <div className=" grid grid-cols-8 border p-5 text-center">
