@@ -1,25 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  ticketDetail: {}
 };
 
 export const TicketSlice = createSlice({
-  name: "ticket",
+  name: "ticketDetail",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    detail: (state, action) => {
+      state.ticketDetail = action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = TicketSlice.actions;
+export const { detail } = TicketSlice.actions;
 
 export default TicketSlice.reducer;

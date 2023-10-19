@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BsPaypal } from "react-icons/bs";
 import kbz from "../../public/kbz.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
-const FormSubmit = () => {
+import { useSelector } from "react-redux";
+  // Get Ticket Detail
+  const detail = useSelector((store) => store?.ticket?.ticketDetail);
+  console.log(detail);
   const [qty, setQty] = useState(1);
   const [extraPerson, setExtraPerson] = useState(0);
   const [total, setTotal] = useState(0);
@@ -17,7 +18,7 @@ const FormSubmit = () => {
     email: "",
     payment_type: "",
     transactionid: "",
-    ticketid: "653113aa159bca69ffa36b04",
+    ticketid: detail?._id,
     plus_person: null,
     tick_quantity: null,
     total_price: null,
@@ -25,9 +26,9 @@ const FormSubmit = () => {
 
   // Calculate the total price whenever qty or extraPerson changes
   useEffect(() => {
-    const pricePerTicket = 35000; // Change this to the actual price per ticket
-    const fee = 555; // Change this to the actual fee
-    const totalPrice = qty * pricePerTicket + extraPerson * fee;
+    const pricePerTicket = detail?.price; // Change this to the actual price per ticket
+    let totalPrice = qty * pricePerTicket + extraPerson * detail?.extra_price;
+
     setTotal(totalPrice);
     setFormData({
       ...formData,
@@ -148,13 +149,16 @@ const FormSubmit = () => {
                   </p>
                   <p
                     className="w-10 h-10 flex justify-center items-center"
-                    onClick={() => setQty(qty + 1)}
+                    onClick={() => {
+                      setQty(qty + 1);
+                    }}
                   >
                     +
                   </p>
                 </div>
               </div>
               {/* Extra person */}
+
               <div className="cursor-pointer flex justify-between border-white bg-gradient-to-r from-zinc-600 to-zinc-500 items-center p-5 rounded-md text-white">
                 <p>Extra person : </p>
                 <div className="flex items-center gap-2 text-xl bg-white justify-center text-black rounded-md overflow-hidden">
@@ -234,21 +238,20 @@ const FormSubmit = () => {
         <div className="p-5 flex flex-col rounded-md ">
           <div className="text-black bg-gradient-to-r from-zinc-200 to-zinc-300 rounded-md">
             <div className="text-3xl py-5 flex justify-between px-5 border-b-2">
-              <p>GA</p> <p>35000mmk</p>
+              <p>{detail?.ticket_name}</p>{" "}
+              <p>{detail?.price?.toLocaleString()} MMK</p>
             </div>
             {/* price  */}
             <div className="flex justify-between p-5">
               <div className="text-xl flex flex-col gap-5 ">
-                <p>Price : </p>
                 <p>Quantity : </p>
-                <p>Fee : </p>
-                <p>Total : </p>
+                <p>Extra Person: </p>
+                <p>Total Price: </p>
               </div>
               <div className="text-xl flex flex-col gap-5 ">
-                <p>35000mmk </p>
-                <p>{qty} ticket</p>
-                <p>555mmk </p>
-                <p>{total}mmk</p>
+                <p>{formData?.tick_quantity} ticket</p>
+                <p>{formData?.plus_person} person</p>
+                <p>{formData?.total_price?.toLocaleString()} MMK</p>
               </div>
             </div>
           </div>

@@ -6,9 +6,32 @@ import ayabank from "../assets/ayabank.png";
 import ayapay from "../assets/ayapay.png";
 import poster from "../assets/poster.jpg";
 import floorplan from "../assets/floorplan.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { detail } from "../Global/TicketSlice";
 
 const Home = () => {
+  const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  // const detailLog = useSelector((store) => store.ticket.ticketDetail);
+  // console.log(detailLog);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://206.189.39.172/tickets");
+
+        console.log(response);
+        setData(response?.data?.result?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="flex flex-col gap-5">
       {/* Hero Image */}
@@ -53,48 +76,30 @@ const Home = () => {
       {/* Ticket Section */}
       <div className="grid grid-cols-12 gap-5 px-5">
         {/* Card */}
-        <div className="col-span-12 md:col-span-4 rounded bg-slate-600 overflow-hidden">
-          {/* Image */}
-          <div className="">
-            <img
-              src={poster}
-              alt=""
-              className="w-full h-[150px] object-cover"
-            />
-          </div>
-          <div className=" text-white flex justify-between items-center p-5">
-            <h1 className="">GA</h1>
-            <p>9,500 MMK</p>
-          </div>
-        </div>
-        <div className="col-span-12 md:col-span-4 rounded bg-slate-600">
-          {/* Image */}
-          <div className="">
-            <img
-              src={poster}
-              alt=""
-              className="w-full h-[150px] object-cover"
-            />
-          </div>
-          <div className=" text-white flex justify-between items-center p-5">
-            <h1 className="">VIP</h1>
-            <p>9,500 MMK</p>
-          </div>
-        </div>
-        <div className="col-span-12 md:col-span-4 rounded bg-slate-600">
-          {/* Image */}
-          <div className="">
-            <img
-              src={poster}
-              alt=""
-              className="w-full h-[150px] object-cover"
-            />
-          </div>
-          <div className=" text-white flex justify-between items-center p-5">
-            <h1 className="">VVIP</h1>
-            <p>9,500 MMK</p>
-          </div>
-        </div>
+        {data?.map((el) => {
+          return (
+            <div
+              key={el?.id}
+              onClick={() => {
+                dispatch(detail(el)), nav("/form-submit");
+              }}
+              className="col-span-12 md:col-span-4 rounded bg-slate-600 overflow-hidden"
+            >
+              {/* Image */}
+              <div className="">
+                <img
+                  src={poster}
+                  alt=""
+                  className="w-full h-[150px] object-cover"
+                />
+              </div>
+              <div className=" text-white flex justify-between items-center p-5">
+                <h1 className="">{el?.ticket_name}</h1>
+                <p>{el?.price?.toLocaleString()} MMK</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
       {/* Footer */}
       <div className="bg-slate-600 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
