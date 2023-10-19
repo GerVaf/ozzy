@@ -6,7 +6,7 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
-  @apply text-gray-700;
+  @apply text-gray-700 bg-gray-900;
 }
 .formdecoration {
   @apply bg-white rounded-md py-2 px-3 outline-none;
