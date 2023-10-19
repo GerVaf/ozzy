@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { BsPaypal } from "react-icons/bs";
 import kbz from "../../public/kbz.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const FormSubmit = () => {
   const [qty, setQty] = useState(1);
   const [extraPerson, setExtraPerson] = useState(0);
   const [total, setTotal] = useState(0);
+  const nav = useNavigate();
+  const [errorMessages, setErrorMessages] = useState();
 
   const [formData, setFormData] = useState({
     accname: "",
@@ -52,12 +55,19 @@ const FormSubmit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://206.189.39.172/user", formData);
+      const response = await axios.post("http://api.ozzy.today/user", formData);
       console.log(response);
+
+      if (response?.data?.result?.msg === "Successful") {
+        nav("/");
+      }
+      if (response?.data?.status === 400) {
+        setErrorMessages(response?.data?.err);
+      }
     } catch (error) {
       console.error(error);
     }
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
@@ -74,6 +84,18 @@ const FormSubmit = () => {
               >
                 Purchased Information
               </label>
+              {errorMessages && (
+                <div className="error-messages">
+                  <h2>Error Messages:</h2>
+                  <ul>
+                    {Object.keys(errorMessages).map((fieldName) => (
+                      <li key={fieldName}>
+                        {fieldName}: {errorMessages[fieldName]}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               {/* name, phone number, and KBZ pay transition ID */}
               <input
                 placeholder="Your name"
@@ -83,7 +105,6 @@ const FormSubmit = () => {
                 name="accname"
                 value={formData.accname}
                 onChange={handleChange}
-                required
               />
               <input
                 placeholder="Your phone number"
@@ -93,7 +114,6 @@ const FormSubmit = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                required
               />
               <input
                 placeholder="Transition ID"
@@ -103,7 +123,6 @@ const FormSubmit = () => {
                 name="transactionid"
                 value={formData.transactionid}
                 onChange={handleChange}
-                required
               />
               <input
                 placeholder="Your email"
@@ -113,7 +132,6 @@ const FormSubmit = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
               {/* Quantity */}
               <div className="cursor-pointer flex justify-between border-white bg-gradient-to-r from-zinc-600 to-zinc-500 items-center p-5 rounded-md text-white">
@@ -193,7 +211,6 @@ const FormSubmit = () => {
                 name="termsAndConditions"
                 // checked={formData.termsAndConditions}
                 // onChange={handleChange}
-                required
               />
               <label htmlFor="termsAndConditionsCheckbox">
                 <div>
