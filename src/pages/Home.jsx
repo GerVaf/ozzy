@@ -1,25 +1,100 @@
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import kbzpay from "../assets/kbzpay.webp";
+import kbzBank from "../assets/kbzBank.png";
+import ayabank from "../assets/ayabank.png";
+import ayapay from "../assets/ayapay.png";
+import poster from "../assets/poster.jpg";
+import floorplan from "../assets/floorplan.jpg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="flex flex-col gap-5">
       {/* Hero Image */}
-      <div className="h-screen bg-slate-600">
-        <img
-          className="h-full w-full"
-          src={
-            "https://images.unsplash.com/photo-1696595883516-76c97aa3a164?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-        />
+      <div className="aspect-auto">
+        <img className="h-full w-full" src={poster} />
       </div>
-      {/* Second Image */}
-      <div className="h-[500px] bg-slate-600"></div>
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-0 lg:justify-center lg:items-center">
+        <div className="w-full lg:w-[30%]">
+          <img className="w-full h-full" src={floorplan} />
+        </div>
+        {/* Second Image */}
+        <div className=" text-slate-900 px-5">
+          {/* Bank Card */}
+          <div className="grid grid-cols-12 gap-5">
+            <div className="col-span-12 md:col-span-6 p-5 bg-slate-100 rounded flex flex-col gap-3 items-center">
+              {/* Image */}
+              <img src={ayabank} alt="" className="h-[100px] aspect-auto" />
+
+              {/* Header */}
+              <h1>AYA Account</h1>
+              <p>20009182392</p>
+            </div>
+            <div className="col-span-12 md:col-span-6 p-5 bg-slate-100 rounded flex flex-col gap-3 items-center">
+              {/* Image */}
+              <img src={ayapay} alt="" className="h-[100px] aspect-auto" />
+
+              {/* Header */}
+              <h1>Apay</h1>
+              <p>09788343932</p>
+            </div>
+            <div className="col-span-12 md:col-span-6 p-5 bg-slate-100 rounded flex flex-col gap-3 items-center">
+              {/* Image */}
+              <img src={kbzpay} alt="" className="h-[100px] aspect-auto" />
+
+              {/* Header */}
+              <h1>KBZ pay</h1>
+              <p>09788343932</p>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Ticket Section */}
-      <div className="grid grid-cols-12 gap-5 px-5 h-[500px]">
+      <div className="grid grid-cols-12 gap-5 px-5">
         {/* Card */}
-        <div className="col-span-12 lg:col-span-4 rounded bg-slate-600"></div>
-        <div className="col-span-12 lg:col-span-4 rounded bg-slate-600"></div>
-        <div className="col-span-12 lg:col-span-4 rounded bg-slate-600"></div>
+        <div className="col-span-12 md:col-span-4 rounded bg-slate-600 overflow-hidden">
+          {/* Image */}
+          <div className="">
+            <img
+              src={poster}
+              alt=""
+              className="w-full h-[150px] object-cover"
+            />
+          </div>
+          <div className=" text-white flex justify-between items-center p-5">
+            <h1 className="">GA</h1>
+            <p>9,500 MMK</p>
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-4 rounded bg-slate-600">
+          {/* Image */}
+          <div className="">
+            <img
+              src={poster}
+              alt=""
+              className="w-full h-[150px] object-cover"
+            />
+          </div>
+          <div className=" text-white flex justify-between items-center p-5">
+            <h1 className="">VIP</h1>
+            <p>9,500 MMK</p>
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-4 rounded bg-slate-600">
+          {/* Image */}
+          <div className="">
+            <img
+              src={poster}
+              alt=""
+              className="w-full h-[150px] object-cover"
+            />
+          </div>
+          <div className=" text-white flex justify-between items-center p-5">
+            <h1 className="">VVIP</h1>
+            <p>9,500 MMK</p>
+          </div>
+        </div>
       </div>
       {/* Footer */}
       <div className="bg-slate-600 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
@@ -27,7 +102,7 @@ const Home = () => {
         <div className="text-white flex items-center gap-5 text-xl">
           <BsFacebook />
           <BsInstagram />
-          <BsTwitter />
+          <FaSquareXTwitter />
         </div>
         {/* Privacy Policy */}
         <div className="text-center md:text-start">

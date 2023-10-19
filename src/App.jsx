@@ -8,6 +8,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+
       <Route path="/form-submit" element={<FormSubmit />} />
       <Route path="/table" element={<DataTable />} />
     </Routes>
