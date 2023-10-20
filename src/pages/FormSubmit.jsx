@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const FormSubmit = () => {
   // Get Ticket Detail
   const detail = useSelector((store) => store?.ticket?.ticketDetail);
-  console.log(detail);
+  // console.log(detail);
   const [qty, setQty] = useState(1);
   const [extraPerson, setExtraPerson] = useState(0);
   const [total, setTotal] = useState(0);
@@ -57,6 +57,7 @@ const FormSubmit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData)
     try {
       const response = await axios.post("http://api.ozzy.today/user", formData);
       console.log(response);
@@ -101,6 +102,7 @@ const FormSubmit = () => {
               )}
               {/* name, phone number, and KBZ pay transition ID */}
               <input
+                required
                 placeholder="Your name"
                 type="text"
                 className="inputForm"
@@ -110,6 +112,7 @@ const FormSubmit = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Your phone number"
                 className="inputForm"
                 type="tel"
@@ -119,6 +122,7 @@ const FormSubmit = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Transition ID"
                 className="inputForm"
                 type="text"
@@ -128,6 +132,7 @@ const FormSubmit = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Your email"
                 className="inputForm"
                 type="text"
@@ -177,7 +182,10 @@ const FormSubmit = () => {
                   </p>
                   <p
                     className="w-10 h-10 flex justify-center items-center"
-                    onClick={() => setExtraPerson(extraPerson + 1)}
+                    onClick={() => {
+                      detail?.extra_person > extraPerson &&
+                        setExtraPerson(extraPerson + 1);
+                    }}
                   >
                     +
                   </p>
@@ -193,8 +201,45 @@ const FormSubmit = () => {
               >
                 Payment Information
               </label>
-              <div className="flex rounded-md gap-5">
-                <select
+              <div className="flex rounded-md gap-10 w-full">
+                <div>
+                  <input
+                    type="radio"
+                    className="outline-none p-5 mr-2"
+                    id="payment_type_ayapay"
+                    name="payment_type"
+                    value="ayapay"
+                    checked={formData.payment_type === "ayapay"}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="payment_type_ayapay">AYA Pay</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    className="outline-none p-5 mr-2"
+                    id="payment_type_ayaaccount"
+                    name="payment_type"
+                    value="ayaaccount"
+                    checked={formData.payment_type === "ayaaccount"}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="payment_type_ayaaccount">AYA account</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    className=" outline-none p-5 mr-2"
+                    id="payment_type_kbzpay"
+                    name="payment_type"
+                    value="kbzpay"
+                    checked={formData.payment_type === "kbzpay"}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="payment_type_kbzpay">KBZ Pay</label>
+                </div>
+
+                {/* <select
                   className="w-2/4 outline-none p-5"
                   id="payment_type"
                   name="payment_type"
@@ -204,13 +249,14 @@ const FormSubmit = () => {
                   <option value="ayapay">AYA Pay</option>
                   <option value="ayaaccount">AYA account</option>
                   <option value="kbzpay">KBZ Pay</option>
-                </select>
+                </select> */}
               </div>
             </div>
 
             {/* Terms and Conditions */}
             <div className="flex gap-5">
               <input
+                required
                 className="w-5 h-5"
                 type="checkbox"
                 id="termsAndConditionsCheckbox"
