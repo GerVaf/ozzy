@@ -3,6 +3,8 @@ import { BsPaypal } from "react-icons/bs";
 import kbz from "../../public/kbz.png";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+const FormSubmit = () => {
   // Get Ticket Detail
   const detail = useSelector((store) => store?.ticket?.ticketDetail);
   console.log(detail);
@@ -259,6 +261,6 @@ import { useSelector } from "react-redux";
       </div>
     </div>
   );
-;
+};
 
 export default FormSubmit;

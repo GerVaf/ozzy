@@ -83,7 +83,7 @@ const Home = () => {
               onClick={() => {
                 dispatch(detail(el)), nav("/form-submit");
               }}
-              className="col-span-12 md:col-span-4 rounded bg-slate-600 overflow-hidden"
+              className="col-span-12 md:col-span-4 rounded bg-red-600 overflow-hidden"
             >
               {/* Image */}
               <div className="">
@@ -102,7 +102,7 @@ const Home = () => {
         })}
       </div>
       {/* Footer */}
-      <div className="bg-slate-600 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
+      <div className="bg-gray-900 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
         {/* Social Icons */}
         <div className="text-white flex items-center gap-5 text-xl">
           <BsFacebook />
