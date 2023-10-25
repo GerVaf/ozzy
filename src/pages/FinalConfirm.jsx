@@ -10,8 +10,6 @@ const FinalConfirm = () => {
   const orderId = getUrlParam.get("merchantOrderId");
 
   const [formData, setFormData] = useState({
-    // name: "",
-    // email: "",
     transactionScreenshot: null,
   });
 
@@ -29,6 +27,7 @@ const FinalConfirm = () => {
     const form = new FormData();
     // form.append("name", formData.name);
     form.append("orderId", orderId);
+    console.log(orderId)
     form.append("transactionScreenshot", formData.transactionScreenshot);
 
     try {
