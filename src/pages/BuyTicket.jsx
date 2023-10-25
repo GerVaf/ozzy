@@ -177,17 +177,7 @@ const BuyTicket = () => {
                       : ""
                   } border-2 rounded p-1 text-sm lg:p-3 lg:font-bold cursor-pointer`}
                 >
-                  {ticket?.ticket_name === "GA" && "GA"}
-
-                  {ticket?.ticket_name === "VIP_Y" && "VIP"}
-                  {ticket?.ticket_name === "VIP_B" && "S-VIP"}
-                  {ticket?.ticket_name === "VVIP" && "VVIP"}
-                  {ticket?.ticket_name === "VVIP_S1" && (
-                    <span>S-VVIP GOLD</span>
-                  )}
-                  {ticket?.ticket_name === "VVIP_S2" && (
-                    <span>S-VVIP DIAMOND</span>
-                  )}
+                  {ticket?.ticket_name}
                 </div>
               );
             })}
@@ -229,8 +219,8 @@ const BuyTicket = () => {
                       <label htmlFor="package2">Package two</label>
                     </div>
                     {data?.ticket_name === "VVIP" ||
-                    data?.ticket_name === "VVIP_S1" ||
-                    data?.ticket_name === "VVIP_S2" ? null : (
+                    data?.ticket_name === "S-VVIP-GOLD" ||
+                    data?.ticket_name === "S-VVIP-DIAMOND" ? null : (
                       <div className="bg-slate-200 p-3 rounded font-semibold flex items-center">
                         <input
                           type="radio"
@@ -317,8 +307,7 @@ const BuyTicket = () => {
               </h1>
             </div>
             <button
-              disabled
-              // onClick={() => dataSubmit()}
+              onClick={() => dataSubmit()}
               className="bg-gradient-to-r hover:from-blue-400 hover:to-blue-600 from-blue-500 to-blue-700 rounded-md p-3 text-white font-bold"
             >
               Buy Ticket
