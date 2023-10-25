@@ -27,9 +27,9 @@ const FinalConfirm = () => {
     const form = new FormData();
     // form.append("name", formData.name);
     form.append("orderId", orderId);
-    console.log(orderId)
+    // console.log(orderId)
     form.append("transactionScreenshot", formData.transactionScreenshot);
-
+    console.log(form);
     try {
       const response = await axios.post(
         "https://api.ozzy.today/transactions/transactionImage",
@@ -70,7 +70,7 @@ const FinalConfirm = () => {
     }
   };
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   useEffect(() => {
     postOrderId();
@@ -80,14 +80,26 @@ const FinalConfirm = () => {
     <div className="bg-black flex justify-center">
       <div className="bg-white h-full w-full lg:w-[60%] p-5 sm:p-10 flex flex-col gap-5 items-center">
         <h2 className="text-2xl sm:text-4xl font-bold">Confirmation</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col w-full sm:gap-5"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col w-full sm:gap-5">
           <div className="flex flex-col gap-5 text-xl font-bold">
-            <h1 >Name : <span className="text-base font-medium">{userInfo?.bank_acc_name}</span></h1>
-            <h1>Phone : <span className="text-base font-medium">{userInfo?.phone_number}</span></h1>
-            <h1>Email : <span className="text-base font-medium">{userInfo?.user_email}</span></h1>
+            <h1>
+              Name :{" "}
+              <span className="text-base font-medium">
+                {userInfo?.bank_acc_name}
+              </span>
+            </h1>
+            <h1>
+              Phone :{" "}
+              <span className="text-base font-medium">
+                {userInfo?.phone_number}
+              </span>
+            </h1>
+            <h1>
+              Email :{" "}
+              <span className="text-base font-medium">
+                {userInfo?.user_email}
+              </span>
+            </h1>
           </div>
 
           <div className="flex flex-col gap-2 ">
