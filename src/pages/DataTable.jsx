@@ -107,7 +107,7 @@ const DataTable = ({ refresh, setRefresh }) => {
                 </p>
                 <p className=" w-[130px]">{el?.customer_id?.phone_number}</p>
                 <p className="w-[400px] flex justify-center">
-                  <img src={el?.t_image} alt="" className=" h-32 w-32"/>
+                  <img src={el?.t_image} alt="" className="h-32 w-32"/>
                 </p>
                 <p className=" w-20">{el?.quantity}</p>
                 <p className=" w-20">{el?.ticket_id?.extra_person}</p>
@@ -126,7 +126,7 @@ const DataTable = ({ refresh, setRefresh }) => {
                   ) : (
                     <button
                       onClick={(e) => handleSubmit(e, el?._id)}
-                      className="bg-green-600 p-3 rounded-md"
+                      className="bg-green-700 p-3 rounded-md"
                     >
                       avaiable
                     </button>
