@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const FinalConfirm = () => {
@@ -57,7 +58,7 @@ const FinalConfirm = () => {
           orderId: orderId,
         }
       );
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         console.log("OrderId get successfully");
         setUserInfo(response?.data?.result?.data?.customer_id);
@@ -73,15 +74,21 @@ const FinalConfirm = () => {
 
   useEffect(() => {
     postOrderId();
+    toast.success('Payment Successful')
   }, [orderId]);
 
   return (
     <div className="bg-black text-gray-600 flex h-[100vh] justify-center">
-      <div className="bg-white h-full w-full lg:w-[60%] sm:p-10 flex flex-col  items-center ">
+      <Toaster position="top-center" reverseOrder={false} />
+      <div className="bg-white h-full w-full lg:w-[60%] p-5 sm:p-10 flex flex-col  items-center ">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col w-full h-full  justify-between"
+          className="flex flex-col w-full h-full gap-3 justify-between"
         >
+          <div className="p-3 bg-green-500 text-white">
+            Thank You For Your Purchase. Please submit the confirmation to claim
+            your tickets.
+          </div>
           {/* title info  */}
           <div className="flex flex-col gap-5">
             <h2 className="text-2xl sm:text-4xl font-bold">Confirmation</h2>

@@ -44,7 +44,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://api.ozzy.today/tickets");
-        console.log(response);
+        // console.log(response);
         setData(response?.data?.result?.data);
       } catch (error) {
         console.log(error);
@@ -188,7 +188,7 @@ const Home = () => {
             sectionStates.tablePlan ? "h-[300px] lg:h-screen" : "h-0"
           }`}
         >
-          <div className="w-full lg:w-[75%] border border-orange-500">
+          <div className="w-full lg:w-[75%] border border-orange-500 p-5">
             <img className="w-full h-full" src={tablePlan} />
           </div>
         </div>
@@ -256,7 +256,7 @@ const Home = () => {
       </div>
 
       {/* notice and instruction */}
-      <div className="p-5 flex flex-col lg:flex-row gap-5">
+      {/* <div className="p-5 flex flex-col lg:flex-row gap-5">
         <div className="bg-black text-white w-full lg:w-1/2 p-5 rounded">
           <h1 className="font-bold text-xl mb-3">INSTRUCTIONS</h1>
           <div className="flex flex-col gap-3">
@@ -320,10 +320,10 @@ const Home = () => {
             ပြန်လည်ဆက်သွယ်ပေးမည်ဖြစ်ပါတယ်ခင်ဗျာ။
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
-      <div className="bg-gradient-to-r from-white/10 via-red-600 to-white/10 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
+      <div className="mt-10 bg-gradient-to-r from-white/10 via-red-600 to-white/10 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
         <div className="flex items-center gap-5">
           {/* Social Icons */}
           <a
