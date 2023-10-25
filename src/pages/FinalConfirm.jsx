@@ -10,14 +10,14 @@ const FinalConfirm = () => {
   const orderId = getUrlParam.get("merchantOrderId");
 
   const [formData, setFormData] = useState({
-    transactionScreenshot: null,
+    photo: null,
   });
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setFormData({
       ...formData,
-      transactionScreenshot: file,
+      photo: file,
     });
   };
 
@@ -25,10 +25,9 @@ const FinalConfirm = () => {
     e.preventDefault();
 
     const form = new FormData();
-    // form.append("name", formData.name);
     form.append("orderId", orderId);
-    // console.log(orderId)
-    form.append("transactionScreenshot", formData.transactionScreenshot);
+    form.append("photo", formData.photo);
+
     console.log(form);
     try {
       const response = await axios.post(
@@ -60,7 +59,7 @@ const FinalConfirm = () => {
       );
       console.log(response);
       if (response.status === 200) {
-        console.log("OrderId sent successfully");
+        console.log("OrderId get successfully");
         setUserInfo(response?.data?.result?.data?.customer_id);
       } else {
         console.error("Failed to send the orderId");
