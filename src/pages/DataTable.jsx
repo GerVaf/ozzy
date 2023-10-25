@@ -124,7 +124,11 @@ const DataTable = ({ refresh, setRefresh }) => {
 
                 <p className="w-32">{el?.total_price}</p>
                 <p className="w-32">
-                  {el?.t_success === null || false ? "No" : "Yes"}
+                  {el?.t_success === null || false ? (
+                    <div className="p-3 border-2 text-red-600 border-red-600">NO</div>
+                  ) : (
+                    <div className="p-3 border-2 text-green-600 border-green-600">YES</div>
+                  )}
                 </p>
                 <p className=" w-32">{formattedDate(el?.createdAt)}</p>
                 <p className=" w-24">
