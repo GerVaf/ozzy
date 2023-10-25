@@ -76,9 +76,12 @@ const FinalConfirm = () => {
   }, [orderId]);
 
   return (
-    <div className="bg-black text-gray-600 flex justify-center">
-      <div className="bg-white h-full w-full lg:w-[60%] sm:p-10 flex flex-col  items-center">
-        <form onSubmit={handleSubmit} className="flex flex-col w-full h-[100vh] justify-between">
+    <div className="bg-black text-gray-600 flex h-[100vh] justify-center">
+      <div className="bg-white h-full w-full lg:w-[60%] sm:p-10 flex flex-col  items-center ">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col w-full  justify-between"
+        >
           {/* title info  */}
           <div className="flex flex-col gap-5">
             <h2 className="text-2xl sm:text-4xl font-bold">Confirmation</h2>
