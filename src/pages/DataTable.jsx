@@ -68,9 +68,7 @@ const DataTable = ({ refresh, setRefresh }) => {
           {ticket?.map((el) => {
             return (
               <div>
-                <p className=" col-span-1">
-                  {el?.ticket_name}
-                </p>
+                <p className=" col-span-1">{el?.ticket_name}</p>
                 <p className=" col-span-1">{el?.whole_total_ticket}</p>
               </div>
             );
@@ -89,6 +87,7 @@ const DataTable = ({ refresh, setRefresh }) => {
           <p className=" w-20">Quantity</p>
           <p className=" w-20">Extra Person</p>
           <p className=" w-[100px]">Ticket</p>
+          <p className=" w-20">Package</p>
           <p className="w-32">Total price</p>
           <p className="w-32">Payment Complete</p>
           <p className=" w-32">Time</p>
@@ -97,7 +96,10 @@ const DataTable = ({ refresh, setRefresh }) => {
         <div className="flex flex-col-reverse">
           {data?.map((el, index) => {
             return (
-              <div key={el?._id} className=" flex items-center gap-5 text-center py-2">
+              <div
+                key={el?._id}
+                className=" flex items-center gap-5 text-center py-2"
+              >
                 <p className="  w-5">{index + 1}</p>
                 <p className="  text-lg w-[200px]">
                   {el?.customer_id?.bank_acc_name}
@@ -107,16 +109,20 @@ const DataTable = ({ refresh, setRefresh }) => {
                 </p>
                 <p className=" w-[130px]">{el?.customer_id?.phone_number}</p>
                 <p className="w-[400px] flex justify-center">
-                  <img src={el?.t_image} alt="" className="h-32 w-32"/>
+                  <img src={el?.t_image} alt="" className="h-32 w-32" />
                 </p>
                 <p className=" w-20">{el?.quantity}</p>
                 <p className=" w-20">{el?.ticket_id?.extra_person}</p>
-                <p className=" w-[100px]">
-                  {el?.ticket_id?.ticket_name}
+                <p className=" w-[100px]">{el?.ticket_id?.ticket_name}</p>
+                <p className=" w-20">
+                  {el?.ticket_id?.ticket_name === "GA" ? 0 : el?.package_type}
                 </p>
-                
+
                 <p className="w-32">{el?.total_price}</p>
-                <p className="w-32">{el?.t_success === false ? 'No' : 'Yes'}{el?.t_success === null && 'Processing'}</p>
+                <p className="w-32">
+                  {el?.t_success === false ? "No" : "Yes"}
+                  {el?.t_success === null && "Processing"}
+                </p>
                 <p className=" w-32">{formattedDate(el?.createdAt)}</p>
                 <p className=" w-24">
                   {el?.sold_out ? (

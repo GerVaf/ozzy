@@ -25,7 +25,7 @@ const BuyTicket = () => {
     email: "",
     ticketid: "",
     phone: "",
-    package: null,
+    package: 1,
     tick_quantity: null,
     plus_person: null,
     total_price: null,
@@ -230,7 +230,6 @@ const BuyTicket = () => {
                           value="3"
                           checked={formData.package === 3}
                           onChange={handleChange}
-                          required
                         />
                         <label htmlFor="package3">Package three</label>
                       </div>
