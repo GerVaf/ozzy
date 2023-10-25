@@ -69,21 +69,7 @@ const DataTable = ({ refresh, setRefresh }) => {
             return (
               <div>
                 <p className=" col-span-1">
-                  {el?.ticket_name === "GA" && "GA"}
-
-                  {el?.ticket_name === "VIP_Y" && "VIP"}
-                  {el?.ticket_name === "VIP_B" && "S-VIP"}
-                  {el?.ticket_name === "VVIP" && "VVIP"}
-                  {el?.ticket_name === "VVIP_S1" && (
-                    <span>
-                      S<sup>1</sup>-VVIP
-                    </span>
-                  )}
-                  {el?.ticket_name === "VVIP_S2" && (
-                    <span>
-                      S<sup>2</sup>-VVIP
-                    </span>
-                  )}
+                  {el?.ticket_name}
                 </p>
                 <p className=" col-span-1">{el?.whole_total_ticket}</p>
               </div>
@@ -121,26 +107,12 @@ const DataTable = ({ refresh, setRefresh }) => {
                 </p>
                 <p className=" w-[130px]">{el?.customer_id?.phone_number}</p>
                 <p className="w-[400px] flex justify-center">
-                  <img src={el?.t_image} alt="" className="h-52"/>
+                  <img src={el?.t_image} alt="" className=" h-32 w-32"/>
                 </p>
                 <p className=" w-20">{el?.quantity}</p>
                 <p className=" w-20">{el?.ticket_id?.extra_person}</p>
                 <p className=" w-[100px]">
-                  {el?.ticket_id?.ticket_name === "GA" && "GA"}
-
-                  {el?.ticket_id?.ticket_name === "VIP_Y" && "VIP"}
-                  {el?.ticket_id?.ticket_name === "VIP_B" && "S-VIP"}
-                  {el?.ticket_id?.ticket_name === "VVIP" && "VVIP"}
-                  {el?.ticket_id?.ticket_name === "VVIP_S1" && (
-                    <span>
-                      S<sup>1</sup>-VVIP
-                    </span>
-                  )}
-                  {el?.ticket_id?.ticket_name === "VVIP_S2" && (
-                    <span>
-                      S<sup>2</sup>-VVIP
-                    </span>
-                  )}
+                  {el?.ticket_id?.ticket_name}
                 </p>
                 
                 <p className="w-32">{el?.total_price}</p>
