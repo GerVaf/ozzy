@@ -112,10 +112,14 @@ const DataTable = ({ refresh, setRefresh }) => {
                   <img src={el?.t_image} alt="" className="h-32 w-32" />
                 </p>
                 <p className=" w-20">{el?.quantity}</p>
-                <p className=" w-20">{el?.ticket_id?.extra_person}</p>
+                <p className=" w-20">
+                  {el?.ticket_id?.ticket_name === "GA"
+                    ? "-"
+                    : el?.ticket_id?.extra_person}
+                </p>
                 <p className=" w-[100px]">{el?.ticket_id?.ticket_name}</p>
                 <p className=" w-20">
-                  {el?.ticket_id?.ticket_name === "GA" ? 0 : el?.package_type}
+                  {el?.ticket_id?.ticket_name === "GA" ? "-" : el?.package_type}
                 </p>
 
                 <p className="w-32">{el?.total_price}</p>
