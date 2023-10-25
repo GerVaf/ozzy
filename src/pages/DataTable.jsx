@@ -124,7 +124,7 @@ const DataTable = ({ refresh, setRefresh }) => {
                 </p>
                 <p className=" w-32">{formattedDate(el?.createdAt)}</p>
                 <p className=" w-24">
-                  {el?.sold_out ? (
+                  {el?.t_final_confirm ? (
                     <button className="bg-red-600 p-3 rounded-md">
                       sold out
                     </button>
