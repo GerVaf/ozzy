@@ -77,7 +77,7 @@ const FinalConfirm = () => {
 
   return (
     <div className="bg-black text-gray-600 flex justify-center">
-      <div className="bg-white h-full w-full lg:w-[60%] p-5 sm:p-10 flex flex-col gap-5 items-center">
+      <div className="bg-white h-full w-full lg:w-[60%] sm:p-10 flex flex-col  items-center">
         <form onSubmit={handleSubmit} className="flex flex-col w-full h-[100vh] justify-between">
           {/* title info  */}
           <div className="flex flex-col gap-5">
