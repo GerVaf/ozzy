@@ -3,7 +3,6 @@ import {
   BsFillArrowDownCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-
 import poster from "../assets/poster.jpg";
 import bgCard2 from "../assets/bgCard2.png";
 import bgCardGA from "../assets/bgCardGA.png";
@@ -107,10 +106,29 @@ const Home = () => {
             return (
               <div
                 key={el?._id}
+                onClick={() => {
+                  {
+                    el?.ticket_name === "GA" && nav("/ga");
+                  }
+                  {
+                    el?.ticket_name === "VIP" && nav("/vip");
+                  }
+                  {
+                    el?.ticket_name === "S-VIP" && nav("/vip");
+                  }
+                  {
+                    el?.ticket_name === "VVIP" && nav("/Vvip");
+                  }
+                  {
+                    el?.ticket_name === "S-VVIP-GOLD" && nav("/Vvip");
+                  }
+                  {
+                    el?.ticket_name === "S-VVIP-DIAMOND" && nav("/SVvip");
+                  }
+                }}
                 className="rounded overflow-hidden lg:w-2/6 p-5"
               >
                 {/* Image */}
-
                 <img
                   src={el?.ticket_name === "GA" ? bgCardGA : bgCard2}
                   alt=""
@@ -122,32 +140,24 @@ const Home = () => {
                   <h1
                     className={`text-3xl font-bold
                   ${el?.ticket_name === "GA" && "ga"}
-                ${el?.ticket_name === "VIP_Y" && "vip"}
-                ${el?.ticket_name === "VIP_B" && "vip"}
+                ${el?.ticket_name === "VIP" && "vip"}
+                ${el?.ticket_name === "S-VIP" && "vip"}
                 ${el?.ticket_name === "VVIP" && "vvip"} ${
-                      el?.ticket_name === "VVIP_S1" && "vvip"
-                    } ${el?.ticket_name === "VVIP_S2" && "vvip"}`}
+                      el?.ticket_name === "S-VVIP-GOLD" && "vvip"
+                    } ${el?.ticket_name === "S-VVIP-DIAMOND" && "vvip"}`}
                   >
-                    {el?.ticket_name === "GA" && "GA"}
-
-                    {el?.ticket_name === "VIP_Y" && "VIP"}
-                    {el?.ticket_name === "VIP_B" && "S-VIP"}
-                    {el?.ticket_name === "VVIP" && "VVIP"}
-                    {el?.ticket_name === "VVIP_S1" && <span>S-VVIP GOLD</span>}
-                    {el?.ticket_name === "VVIP_S2" && (
-                      <span>S-VVIP DIAMOND</span>
-                    )}
+                    {el?.ticket_name}
                   </h1>
                   <div>
                     {el?.ticket_name == "GA" ? (
                       ""
                     ) : (
                       <p className="text-xs text-end">
-                        For {el?.ticket_name === "VIP_Y" && "6 Person"}{" "}
-                        {el?.ticket_name === "VIP_B" && "6 Person"}{" "}
+                        For {el?.ticket_name === "VIP" && "6 Person"}{" "}
+                        {el?.ticket_name === "S-VIP" && "6 Person"}{" "}
                         {el?.ticket_name === "VVIP" && "7 Person"}{" "}
-                        {el?.ticket_name === "VVIP_S1" && "9 Person"}{" "}
-                        {el?.ticket_name === "VVIP_S2" && "9 Person"}
+                        {el?.ticket_name === "S-VVIP-GOLD" && "9 Person"}{" "}
+                        {el?.ticket_name === "S-VVIP-DIAMOND" && "9 Person"}
                       </p>
                     )}
 
@@ -185,7 +195,7 @@ const Home = () => {
       </div>
 
       {/* Payment */}
-      <div className="flex flex-col gap-5 mb-5">
+      {/* <div className="flex flex-col gap-5 mb-5">
         <h1 className="font-bold text-5xl md:text-8xl text-red-800 text-center">
           Payments
         </h1>
@@ -202,17 +212,17 @@ const Home = () => {
         >
           <div className="grid grid-cols-12 gap-5 w-full px-3">
             <div className="col-span-12 lg:col-span-4 p-5 bg-slate-100 rounded flex flex-col gap-3 items-center">
-              {/* Image */}
+              {/* Image 
               <img src={ayabank} alt="" className="h-[100px] aspect-auto" />
-              {/* Header */}
+              {/* Header *
               <h1>AYA Account</h1>
               <p>20009182392</p>
             </div>
             <div className="col-span-12 lg:col-span-4 p-5 bg-slate-100 rounded flex justify-around gap-5 items-center">
               <div className="text-center">
-                {/* Image */}
+                {/* Image *
                 <img src={ayapay} alt="" className="h-[100px] aspect-auto" />
-                {/* Header */}
+                {/* Header *
                 <p>09788343932</p>
               </div>
               <div>
@@ -221,9 +231,9 @@ const Home = () => {
             </div>
             <div className="col-span-12 lg:col-span-4 p-5 bg-slate-100 rounded flex justify-around gap-3 items-center">
               <div className="text-center">
-                {/* Image */}
+                {/* Image *
                 <img src={kbzpay} alt="" className="h-[100px] aspect-auto" />
-                {/* Header */}
+                {/* Header *
                 <h1>KBZ pay</h1>
                 <p>09788343932</p>
               </div>
@@ -233,7 +243,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Confirmation */}
       <div className="flex flex-col items-center gap-5">

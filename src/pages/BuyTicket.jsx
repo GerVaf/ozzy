@@ -116,7 +116,7 @@ const BuyTicket = () => {
     <div className=" flex flex-col justify-center items-center">
       <div className="flex flex-col gap-5 bg-white w-full sm:w-[70%] p-5 sm:p-10">
         {/* Personal Information */}
-        <h1 className="text-lg sm:text-4xl font-bold">Personal Information</h1>
+        <h1 className="text-lg sm:text-4xl font-bold">Purchase Information</h1>
 
         <input
           required
@@ -149,8 +149,6 @@ const BuyTicket = () => {
           value={formData.phone}
           onChange={handleChange}
         />
-
-        <h1 className="text-lg sm:text-4xl font-bold">Purchase Information</h1>
         {/* Ticket Type */}
         <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
           <h1 className="text-lg font-bold">Choose Ticket</h1>
@@ -174,8 +172,8 @@ const BuyTicket = () => {
                   className={`${
                     data?.ticket_name === ticket?.ticket_name || !data
                       ? "bg-gray-600 text-white"
-                      : ""
-                  } border-2 rounded p-1 text-sm lg:p-3 lg:font-bold cursor-pointer`}
+                      : "bg-slate-200"
+                  } w-24 h-20  flex justify-center items-center border-2 rounded text-sm lg:p-3 lg:font-bold cursor-pointer`}
                 >
                   {ticket?.ticket_name}
                 </div>
