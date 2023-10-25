@@ -15,12 +15,12 @@ const ThankYou = () => {
         >
           <TiTick />
         </motion.div>
-        <motion.h1 initial={{y:30,opacity:0}} animate={{y:0,opacity:1}} transition={{type:'spring',delay:.4}} className="font-bold text-5xl">Thank You</motion.h1>
+        <motion.h1 initial={{y:30,opacity:0}} animate={{y:0,opacity:1}} transition={{type:'spring',delay:.4}} className="font-bold text-5xl">Complete</motion.h1>
         <button
           onClick={() => nav("/")}
           className="px-8 py-2 bg-green-500 text-white rounded font-semibold hover:bg-green-700"
         >
-          Back To Home page
+          သင်၀ယ်ယူထားသောTicketကို ၂၄နာရီအတွင်း Emailမှ လက်ခံရရှိပါမည်။
         </button>
       </motion.div>
     </div>
