@@ -76,11 +76,11 @@ const FinalConfirm = () => {
   }, [orderId]);
 
   return (
-    <div className="bg-black flex justify-center">
+    <div className="bg-black text-gray-600 flex justify-center">
       <div className="bg-white h-full w-full lg:w-[60%] p-5 sm:p-10 flex flex-col gap-5 items-center">
         <h2 className="text-2xl sm:text-4xl font-bold">Confirmation</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col w-full sm:gap-5">
-          <div className="flex flex-col gap-5 text-xl font-bold">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
+          <div className="flex flex-col gap-10 text-lg font-bold">
             <h1>
               Name :{" "}
               <span className="text-base font-medium">
