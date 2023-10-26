@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../assets/poster.jpg";
+import bg from "../assets/bg.jpeg";
 import { useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
 const Home = () => {
@@ -7,11 +7,10 @@ const Home = () => {
   return (
     <>
       <div className="relative flex justify-center flex-col gap-5 lg:flex-row">
-        <div className="">
-          <img className="h-full w-full" src={bg} />
-        </div>
+        <img className="w-full" src={bg} />
+
         {/* Buttons */}
-        <div className="lg:absolute flex flex-col md:flex-row justify-center items-center gap-10 bottom-10">
+        <div className="lg:absolute flex flex-col md:flex-row justify-center items-center gap-10 bottom-4">
           {/* LineUp */}
           <button onClick={() => nav("/line-up")} className="buttons">
             Line Up
@@ -28,7 +27,7 @@ const Home = () => {
       </div>
       {/* Footer */}
       <div className="mt-10 bg-gradient-to-r from-white/10 via-red-600 to-white/10 p-5 flex flex-col md:flex-row gap-5 justify-between items-center">
-        <div className="flex flex-col lg:flex-row items-center gap-5">
+        <div className="flex flex-col md:flex-row items-center gap-5">
           {/* Social Icons */}
           <a
             href="https://www.facebook.com/profile.php?id=61552327747812"
