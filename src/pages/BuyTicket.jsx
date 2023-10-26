@@ -31,7 +31,7 @@ const BuyTicket = () => {
     total_price: null,
   });
 
-  console.log(formData);
+  // console.log(formData);
 
   // Collect Input value
   const handleChange = (e) => {
@@ -52,13 +52,13 @@ const BuyTicket = () => {
     }
   };
 
-  console.log(data);
+  // console.log(data);
 
   // Calculate the total price whenever qty or extraPerson changes
   useEffect(() => {
     const pricePerTicket = data?.price; // Change this to the actual price per ticket
     let totalPrice = qty * pricePerTicket + extraPerson * data?.extra_price;
-    console.log(totalPrice);
+    // console.log(totalPrice);
     setTotal(totalPrice);
     setFormData({
       ...formData,
@@ -72,7 +72,7 @@ const BuyTicket = () => {
     const fetchTicketData = async () => {
       try {
         const response = await axios.get("https://api.ozzy.today/tickets");
-        console.log(response);
+        // console.log(response);
         setTicketsData(response?.data?.result?.data);
       } catch (error) {
         console.log(error);
@@ -82,14 +82,14 @@ const BuyTicket = () => {
   }, []);
 
   const dataSubmit = async () => {
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await axios.post(
         "https://api.ozzy.today/user",
         formData
       );
-      console.log(response);
+      // console.log(response);
 
       if (response.status === 200) {
         // Handle a successful API response here
@@ -111,12 +111,12 @@ const BuyTicket = () => {
     }
   };
 
-  console.log(errorMessages);
+  // console.log(errorMessages);
   return (
     <div className=" flex flex-col justify-center items-center">
       <div className="flex flex-col gap-5 bg-white w-full sm:w-[70%] p-5 sm:p-10">
         {/* Personal Information */}
-        <h1 className="text-lg sm:text-4xl font-bold">Personal Information</h1>
+        <h1 className="text-lg sm:text-4xl font-bold">Purchase Information</h1>
 
         <input
           required
@@ -149,12 +149,10 @@ const BuyTicket = () => {
           value={formData.phone}
           onChange={handleChange}
         />
-
-        <h1 className="text-lg sm:text-4xl font-bold">Purchase Information</h1>
         {/* Ticket Type */}
-        <div className="flex sm:flex-row flex-col items-center justify-between gap-2">
+        <div className="flex lg:flex-row flex-col items-center justify-between gap-2">
           <h1 className="text-lg font-bold">Choose Ticket</h1>
-          <div className="flex items-center flex-wrap gap-3">
+          <div className="flex items-center flex-wrap justify-center lg:justify-end gap-3">
             {ticketsData?.map((ticket) => {
               return (
                 <div
@@ -174,8 +172,8 @@ const BuyTicket = () => {
                   className={`${
                     data?.ticket_name === ticket?.ticket_name || !data
                       ? "bg-gray-600 text-white"
-                      : ""
-                  } border-2 rounded p-1 text-sm lg:p-3 lg:font-bold cursor-pointer`}
+                      : "bg-slate-200"
+                  } w-24 h-20 p-5 flex justify-center items-center border-2 rounded text-sm lg:p-3 lg:font-bold cursor-pointer`}
                 >
                   {ticket?.ticket_name}
                 </div>
@@ -188,10 +186,10 @@ const BuyTicket = () => {
         ) : (
           <>
             {data?.ticket_name === "GA" ? null : (
-              <div className="flex justify-between items-center">
+              <div className="flex lg:flex-row flex-col justify-between items-center">
                 <h1 className="text-lg font-bold mb-3">Choose package </h1>
                 <div className="flex flex-col gap-5">
-                  <div className="flex items-center gap-5">
+                  <div className="flex flex-wrap items-center gap-5">
                     <div className="bg-slate-200 p-3 rounded font-semibold flex items-center">
                       <input
                         type="radio"

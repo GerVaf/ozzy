@@ -8,6 +8,12 @@ import FinalConfirm from "./pages/FinalConfirm";
 import BuyTicket from "./pages/BuyTicket";
 import Fail from "./pages/Fail";
 import ThankYou from "./pages/ThankYou";
+import Ga from "./pages/Ga";
+import Vvip from "./pages/Vvip";
+import SVvip from "./pages/SVvip";
+import Vip from "./pages/Vip";
+import Detail from "./pages/Detail";
+import LineUp from "./pages/LineUp";
 
 const App = () => {
   const [refresh, setRefresh] = useState(false);
@@ -16,7 +22,9 @@ const App = () => {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>}/>
+        <Route path="/details" element={<Detail />} />
+        <Route path="/line-up" element={<LineUp />} />
         <Route path="/buy-ticket" element={<BuyTicket />} />
         <Route path="/final-confirm" element={<FinalConfirm />} />
         <Route
@@ -25,7 +33,10 @@ const App = () => {
         />
         <Route path="/ThankYou" element={<ThankYou />} />
         <Route path="/fail" element={<Fail />} />
-
+        <Route path="/ga" element={<Ga />} />
+        <Route path="/vip" element={<Vip />} />
+        <Route path="/vvip" element={<Vvip />} />
+        <Route path="/SVvip" element={<SVvip />} />
         <Route
           path="/table_7D7TW<b10999O~X~"
           element={<DataTable refresh={refresh} setRefresh={setRefresh} />}
