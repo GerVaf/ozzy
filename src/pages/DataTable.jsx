@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const DataTable = ({ refresh, setRefresh }) => {
   const [data, setData] = useState([]);
   const [ticket, setTicket] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,8 +32,9 @@ const DataTable = ({ refresh, setRefresh }) => {
     fetchData();
   }, [refresh]);
 
-  console.log(data);
-  console.log(ticket);
+  // console.log(data);
+  // console.log(ticket);
+  console.log(filter);
 
   const handleSubmit = async (e, id) => {
     e.preventDefault();
@@ -57,6 +59,24 @@ const DataTable = ({ refresh, setRefresh }) => {
 
   const formattedDate = (time) => new Date(time).toLocaleString();
 
+  // for filter
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+
+  const completeData = data.filter((el) => el.t_success === true);
+  const incompleteData = data.filter(
+    (el) => el.t_success === null || el.t_success === false
+  );
+
+  const filteredData =
+    filter === "complete"
+      ? completeData
+      : filter === "incomplete"
+      ? incompleteData
+      : data;
+
   return (
     <div className=" flex flex-col items-center justify-center text-white">
       <div className="flex gap-10 mb-10 text-2xl">
@@ -77,6 +97,31 @@ const DataTable = ({ refresh, setRefresh }) => {
       </div>
       {/* data tabel */}
       <div className="flex flex-col w-full">
+        {/* Filter Buttons */}
+        <div className="flex justify-center gap-10 mb-10">
+          <button
+            onClick={() => handleFilterChange("all")}
+            className={`${filter === "all" ? " text-white" : "text-gray-400"} `}
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleFilterChange("complete")}
+            className={`${
+              filter === "complete" ? " text-white" : "text-gray-400"
+            } `}
+          >
+            Complete
+          </button>
+          <button
+            onClick={() => handleFilterChange("incomplete")}
+            className={`${
+              filter === "incomplete" ? " text-white" : "text-gray-400"
+            } `}
+          >
+            Incomplete
+          </button>
+        </div>
         {/* header  */}
         <div className=" flex items-center gap-5 border p-3 text-center">
           <h1 className="  w-5">No.</h1>
@@ -94,7 +139,7 @@ const DataTable = ({ refresh, setRefresh }) => {
           <h1 className=" w-20">control</h1>
         </div>
         <div className="flex flex-col-reverse">
-          {data?.map((el, index) => {
+          {filteredData?.map((el, index) => {
             return (
               <div
                 key={el?._id}
@@ -125,9 +170,13 @@ const DataTable = ({ refresh, setRefresh }) => {
                 <p className="w-32">{el?.total_price}</p>
                 <p className="w-32">
                   {el?.t_success === null || false ? (
-                    <div className="p-3 border-2 text-red-600 border-red-600">NO</div>
+                    <div className="p-3 border-2 text-red-600 border-red-600">
+                      NO
+                    </div>
                   ) : (
-                    <div className="p-3 border-2 text-green-600 border-green-600">YES</div>
+                    <div className="p-3 border-2 text-green-600 border-green-600">
+                      YES
+                    </div>
                   )}
                 </p>
                 <p className=" w-32">{formattedDate(el?.createdAt)}</p>
