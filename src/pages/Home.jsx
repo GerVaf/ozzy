@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../assets/bg.jpeg";
+import bg from "../assets/bg.png";
 import { useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
 const Home = () => {
