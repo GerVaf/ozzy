@@ -71,11 +71,7 @@ const DataTable = ({ refresh, setRefresh }) => {
   );
 
   const filteredData =
-    filter === "complete"
-      ? completeData
-      : filter === "incomplete"
-      ? incompleteData
-      : data;
+    filter === "complete"? completeData : filter === "incomplete"? incompleteData: data;
 
   return (
     <div className=" flex flex-col items-center justify-center text-white">
