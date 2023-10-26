@@ -10,9 +10,9 @@ const LineUp = () => {
   return (
     <div>
       {/* Poster */}
-      <img src={poster} alt="" className="w-full"/>
       <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center my-5 items-center gap-5">
         {/* Line up */}
+        <img src={poster} alt="" className="w-full lg:w-[25%]" />
         <img src={img1} alt="" className="w-full lg:w-[25%]" />
         <img src={img2} alt="" className="w-full lg:w-[25%]" />
         <img src={img3} alt="" className="w-full lg:w-[25%]" />
