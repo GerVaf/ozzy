@@ -114,9 +114,9 @@ const BuyTicket = () => {
   // console.log(errorMessages);
   return (
     <div className=" flex flex-col justify-center items-center">
-      <div className="flex flex-col gap-5 bg-white w-full sm:w-[70%] p-5 sm:p-10">
+      <div className="flex flex-col gap-10 bg-white w-full sm:w-[70%] p-5 sm:p-10">
         {/* Personal Information */}
-        <h1 className="text-lg sm:text-4xl font-bold">Purchase Information</h1>
+        <h1 className="text-lg sm:text-5xl font-black">Purchase Information</h1>
 
         <input
           required
@@ -189,7 +189,7 @@ const BuyTicket = () => {
               <div className="flex lg:flex-row flex-col justify-between items-center">
                 <h1 className="text-lg font-bold mb-3">Choose package </h1>
                 <div className="flex flex-col gap-5">
-                  <div className="flex flex-wrap items-center gap-5">
+                  <div className="flex flex-wrap justify-center items-center gap-5">
                     <div className="bg-slate-200 p-3 rounded font-semibold flex items-center">
                       <input
                         type="radio"
