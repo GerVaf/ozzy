@@ -35,3 +35,7 @@ body {
   text-shadow: 0 0 7px #de0a0a, 0 0 10px #de0a0a, 0 0 21px #de0a0a, 0 0 7px #de0a0a,
     0 0 10px #de0a0a, 0 0 21px #de0a0a
 }
+
+.buttons{
+  @apply px-5 py-2 bg-gray-950 border border-slate-50 rounded text-red-500 font-bold text-xl uppercase transition-all hover:scale-105 hover:bg-gray-900
+}
