@@ -244,7 +244,10 @@ const Detail = () => {
       <div className="flex flex-col items-center gap-5">
         <button
           className="px-8 py-5 rounded bg-red-700 text-white font-bold text-lg flex items-center justify-center gap-3 hover:bg-red-900"
-          onClick={() => nav("/buy-ticket")}
+          onClick={() => {
+            nav("/buy-ticket");
+            dispatch(detail(data[0]));
+          }}
         >
           Click Here To Buy Tickets <BsFillArrowRightCircleFill />
         </button>

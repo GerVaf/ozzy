@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import bg from "../assets/bg.png";
 import bg2 from "../assets/bg2.png";
 import { useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { detail } from "../Global/TicketSlice";
 const Home = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://api.ozzy.today/tickets");
+        // console.log(response);
+        setData(response?.data?.result?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <div className="relative flex justify-center flex-col gap-5 lg:flex-row">
@@ -16,7 +33,13 @@ const Home = () => {
             Line Up
           </button>
           {/* LineUp */}
-          <button onClick={() => nav("/buy-ticket")} className="buttons">
+          <button
+            onClick={() => {
+              nav("/buy-ticket");
+              dispatch(detail(data[0]));
+            }}
+            className="buttons"
+          >
             Buy Now
           </button>
           {/* LineUp */}
