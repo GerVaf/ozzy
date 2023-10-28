@@ -23,7 +23,7 @@ const BuyTicket = () => {
   const [formData, setFormData] = useState({
     accname: "",
     email: "",
-    ticketid: "",
+    ticketid: '653113aa159bca69ffa36b04',
     phone: "",
     package: 1,
     tick_quantity: null,
