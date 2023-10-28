@@ -23,7 +23,7 @@ const BuyTicket = () => {
   const [formData, setFormData] = useState({
     accname: "",
     email: "",
-    ticketid: '653113aa159bca69ffa36b04',
+    ticketid: "653113aa159bca69ffa36b04",
     phone: "",
     package: 1,
     tick_quantity: null,
@@ -253,7 +253,7 @@ const BuyTicket = () => {
                     <p
                       className="w-10 h-10 flex justify-center items-center"
                       onClick={() => {
-                        qty < 1 && setQty(qty + 1);
+                        qty < 5 && setQty(qty + 1);
                       }}
                     >
                       +
