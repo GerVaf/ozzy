@@ -253,7 +253,7 @@ const BuyTicket = () => {
                     <p
                       className="w-10 h-10 flex justify-center items-center"
                       onClick={() => {
-                        qty < 5 && setQty(qty + 1);
+                        qty < 1 && setQty(qty + 1);
                       }}
                     >
                       +
