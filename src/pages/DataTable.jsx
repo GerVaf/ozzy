@@ -158,7 +158,7 @@ const DataTable = ({ refresh, setRefresh }) => {
                 <p className=" w-20">
                   {el?.ticket_id?.ticket_name === "GA"
                     ? "-"
-                    : el?.ticket_id?.extra_person}
+                    : el?.plus_person}
                 </p>
                 <p className=" w-[100px]">{el?.ticket_id?.ticket_name}</p>
                 <p className=" w-20">
