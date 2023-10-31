@@ -304,7 +304,7 @@ const BuyTicket = () => {
               </h1>
             </div>
             <button
-              onClick={() => dataSubmit()}
+              // onClick={() => dataSubmit()}
               className="bg-gradient-to-r hover:from-blue-400 hover:to-blue-600 from-blue-500 to-blue-700 rounded-md p-3 text-white font-bold"
             >
               Buy Ticket
