@@ -14,16 +14,18 @@ import SVvip from "./pages/SVvip";
 import Vip from "./pages/Vip";
 import Detail from "./pages/Detail";
 import LineUp from "./pages/LineUp";
+import FOF from "./pages/FOF";
 
 const App = () => {
   const [refresh, setRefresh] = useState(false);
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
+      {/* <Toaster position="top-center" reverseOrder={false} /> */}
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/details" element={<Detail />} />
+        <Route path="/" element={<FOF/>}/>
+        {/* <Home/> */}
+        {/* <Route path="/details" element={<Detail />} />
         <Route path="/line-up" element={<LineUp />} />
         <Route path="/buy-ticket" element={<BuyTicket />} />
         <Route path="/final-confirm" element={<FinalConfirm />} />
@@ -40,7 +42,7 @@ const App = () => {
         <Route
           path="/table_7D7TW<b10999O~X~"
           element={<DataTable refresh={refresh} setRefresh={setRefresh} />}
-        />
+        /> */}
       </Routes>
     </>
   );
